@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>山海之间 · Between Mountains and Seas</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>💍🎉 Hochzeit Tobia & Shuyan</title>
     <style>
         /* --- CORE STYLES & FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+SC:wght@300;500;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
 
         :root {
-            --bg-dark: #060c14;
-            --jade: #0d2b23;
-            --jade-light: #1b4d3e;
-            --emerald: #0a3d30;
-            --teal: #114b4f;
+            --bg-dark: #140303; /* Extrem dunkles Schwarzrot */
+            --crimson: #3d0a0a; /* Tiefes Karmesinrot */
+            --crimson-light: #5c1313; /* Helleres Brokatrot */
+            --wine: #2b0505; /* Weinrot */
+            --maroon: #4a0d0d; /* Kastanienrot */
             --gold-matte: #d4af37;
             --gold-bright: #ffdf7a;
             --gold-dark: #9a7b1c;
-            --mist: rgba(230, 245, 240, 0.06);
+            --mist: rgba(255, 230, 230, 0.04);
             --font-zh: 'Noto Serif SC', serif;
             --font-en: 'Cinzel', serif;
             --font-sans: 'Playfair Display', serif;
@@ -32,7 +33,7 @@
 
         body {
             background-color: var(--bg-dark);
-            color: #e0f0ea;
+            color: #fcebe4;
             font-family: var(--font-sans);
             overflow-x: hidden;
             overflow-y: hidden; /* Behält Kontrolle während des Intros */
@@ -48,7 +49,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            background: radial-gradient(circle at 50% 30%, var(--teal) 0%, var(--jade) 40%, var(--bg-dark) 85%);
+            background: radial-gradient(circle at 50% 30%, var(--maroon) 0%, var(--wine) 45%, var(--bg-dark) 85%);
             overflow: hidden;
             pointer-events: none;
         }
@@ -60,8 +61,8 @@
             height: 200%;
             top: -50%;
             left: -50%;
-            background: radial-gradient(circle at 30% 40%, rgba(10, 61, 48, 0.4) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(17, 75, 79, 0.3) 0%, transparent 60%);
+            background: radial-gradient(circle at 30% 40%, rgba(92, 19, 19, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(61, 10, 10, 0.35) 0%, transparent 60%);
             filter: blur(60px);
             animation: inkFlow 40s infinite alternate ease-in-out;
         }
@@ -72,22 +73,22 @@
             height: 100%;
             bottom: 0;
             left: 0;
-            background: linear-gradient(to top, rgba(6, 12, 20, 0.8) 0%, var(--mist) 40%, transparent 100%);
+            background: linear-gradient(to top, rgba(20, 3, 3, 0.85) 0%, var(--mist) 40%, transparent 100%);
             filter: blur(20px);
             animation: mistDrift 60s infinite linear;
-            opacity: 0.7;
+            opacity: 0.65;
         }
 
-        /* Bergsilhouetten (CSS-generiertes Landschaftspanorama) */
+        /* Bergsilhouetten (Rot-Goldene Landschaft) */
         .mountain-silhouette {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 45vh;
-            background: linear-gradient(to top, #04080e 30%, transparent 100%);
+            background: linear-gradient(to top, #0f0202 30%, transparent 100%);
             clip-path: polygon(0% 80%, 15% 55%, 32% 70%, 50% 40%, 68% 65%, 85% 45%, 100% 75%, 100% 100%, 0% 100%);
-            opacity: 0.5;
+            opacity: 0.6;
             z-index: 2;
         }
 
@@ -97,9 +98,9 @@
             left: 0;
             width: 100%;
             height: 60vh;
-            background: linear-gradient(to top, rgba(13, 43, 35, 0.6) 20%, transparent 100%);
+            background: linear-gradient(to top, rgba(74, 13, 13, 0.5) 20%, transparent 100%);
             clip-path: polygon(0% 90%, 20% 60%, 45% 75%, 70% 50%, 90% 70%, 100% 85%, 100% 100%, 0% 100%);
-            opacity: 0.3;
+            opacity: 0.35;
             z-index: 1;
             transform: scaleX(1.2);
         }
@@ -112,11 +113,11 @@
             transform: translateX(-50%);
             width: 280px;
             height: 280px;
-            background: radial-gradient(circle, #fffdf0 0%, #fffaaf 30%, rgba(212, 175, 55, 0.2) 60%, transparent 100%);
+            background: radial-gradient(circle, #fffdf0 0%, #fffaaf 30%, rgba(212, 175, 55, 0.25) 60%, transparent 100%);
             border-radius: 50%;
-            box-shadow: 0 0 80px rgba(255, 250, 175, 0.4);
+            box-shadow: 0 0 80px rgba(255, 250, 175, 0.35);
             z-index: 1;
-            opacity: 0.75;
+            opacity: 0.8;
         }
 
         /* Goldene Partikel */
@@ -133,7 +134,7 @@
         /* --- FILIGRANE ORNAMENTE (Gufeng-Stil) --- */
         .gold-border-decor {
             position: absolute;
-            border: 1px solid rgba(214, 175, 55, 0.3);
+            border: 1px solid rgba(214, 175, 55, 0.35);
             pointer-events: none;
         }
         .decor-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; width: 40px; height: 40px; }
@@ -148,7 +149,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, #081612 0%, #030706 100%);
+            background: radial-gradient(circle at 50% 50%, #200404 0%, #050000 100%);
             z-index: 9999;
             display: flex;
             justify-content: center;
@@ -175,10 +176,10 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #4a0d0d 0%, #2b0505 50%, #1a0202 100%);
-            border: 2px solid rgba(214, 175, 55, 0.4);
+            background: linear-gradient(135deg, #5c1111 0%, #2e0505 50%, #170101 100%);
+            border: 2px solid rgba(214, 175, 55, 0.5);
             border-radius: 12px;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.9), inset 0 0 40px rgba(10, 61, 48, 0.3);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.95), inset 0 0 40px rgba(74, 13, 13, 0.6);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -188,14 +189,13 @@
             transition: all 0.8s ease;
         }
 
-        /* Brokat/Seidenmuster-Subtilität im Umschlag */
         .envelope::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(214, 175, 55, 0.15) 1px, transparent 0px);
+            background-image: radial-gradient(rgba(214, 175, 55, 0.2) 1px, transparent 0px);
             background-size: 16px 16px;
-            opacity: 0.4;
+            opacity: 0.45;
         }
 
         .envelope-seal {
@@ -224,7 +224,7 @@
             letter-spacing: 6px;
             text-align: center;
             writing-mode: vertical-rl;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
             height: 180px;
             margin-top: 10px;
         }
@@ -234,11 +234,10 @@
             font-size: 0.75rem;
             color: var(--gold-matte);
             letter-spacing: 4px;
-            opacity: 0.8;
+            opacity: 0.85;
             text-transform: uppercase;
         }
 
-        /* Umschlag-Öffnungs-Animationen */
         .envelope-container.opening {
             animation: envelopeBreak 1.5s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
         }
@@ -282,7 +281,6 @@
             position: relative;
             z-index: 5;
             margin-bottom: 40px;
-            /*animation: floatGently 6s infinite alternate ease-in-out;*/
         }
 
         .game-title-zh {
@@ -303,7 +301,7 @@
             color: var(--gold-matte);
             letter-spacing: 6px;
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(214, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(214, 175, 55, 0.35);
             padding-bottom: 15px;
             display: inline-block;
             max-width: 80vw;
@@ -316,7 +314,28 @@
             color: #ffffff;
             letter-spacing: 2px;
             margin: 25px 0 10px 0;
-            text-shadow: 0 0 20px rgba(17, 75, 79, 0.8);
+            text-shadow: 0 0 20px rgba(74, 13, 13, 0.9);
+        }
+
+        .couple-image-container {
+            margin: 30px auto;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 5;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(214, 175, 55, 0.15);
+            border: 1px solid rgba(214, 175, 55, 0.25);
+        }
+
+        .couple-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Der Trick für den modernen Look: Ein weicher Verlauf nach unten */
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
         }
 
         .wedding-date {
@@ -331,10 +350,97 @@
             font-size: 1.1rem;
             max-width: 600px;
             line-height: 1.8;
-            color: #b5d1c9;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            color: #f5ded6;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
             font-style: italic;
             padding: 0 20px;
+        }
+
+        /* --- Audio --- */
+        .audio-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px; /* Adjust spacing */
+            background-color: rgba(0, 0, 0, 0.5); /* Background color for controls */
+            border-radius: 0 0 10px 0; /* Rounded corners (only bottom left) */
+            z-index: 9999; /* In case of overlapping with other elements */
+        }
+
+        .audio-container audio {
+            width: 100px; /* Adjust width of the audio element */
+            opacity: 0.8; /* Adjust transparency of controls */
+        }
+
+        /* --- DYNAMISCHE MASONRY COLLAGE (KAPITEL IV) --- */
+        .gallery-headline {
+            font-family: var(--font-zh);
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 35px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+        }
+        
+        .gallery-headline::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: var(--gold-matte);
+            margin: 12px auto 0 auto;
+            box-shadow: 0 0 5px var(--gold-bright);
+        }
+
+        .masonry-wrapper {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        /* Spaltenbasiertes CSS-Masonry */
+        .masonry-gallery {
+            column-count: 3;
+            column-gap: 15px;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(214, 175, 55, 0.15);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s, box-shadow 0.4s;
+            z-index: 1;
+        }
+
+        /* Weiche Maskierung, damit die Bilder elegant im Background aufgehen */
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            filter: grayscale(10%) contrast(105%);
+            transition: filter 0.4s, transform 0.4s;
+            z-index: 1;
+        }
+
+        /* Interaktiver Schwebeeffekt */
+        .masonry-item:hover {
+            transform: scale(2.0) translateY(-3px);
+            /* transform: scale(1.03) translateY(-3px);*/
+            border-color: rgba(255, 223, 122, 0.5);
+            box-shadow: 0 15px 40px rgba(74, 13, 13, 0.4), 0 0 15px rgba(255, 223, 122, 0.15);
+            z-index: 100;
+        }
+
+        .masonry-item:hover img {
+            filter: grayscale(0%) contrast(100%);
+            z-index: 100;
         }
 
         /* --- THE CHAPTER JOURNEY PATH --- */
@@ -346,7 +452,7 @@
             align-items: center;
         }
 
-        /* Der goldene Schicksalspfad (Verbindungslinie) */
+        /* Schicksalspfad */
         .gold-destiny-path {
             position: absolute;
             top: 0;
@@ -357,7 +463,6 @@
             z-index: 1;
         }
 
-        /* KAPITEL-KNOTEN DESIGN */
         .chapter-node {
             position: relative;
             z-index: 5;
@@ -375,11 +480,11 @@
         }
 
         .chapter-card {
-            background: linear-gradient(145deg, rgba(13, 43, 37, 0.85) 0%, rgba(6, 12, 20, 0.9) 100%);
-            border: 1px solid rgba(214, 175, 55, 0.25);
+            background: linear-gradient(145deg, rgba(61, 10, 10, 0.85) 0%, rgba(20, 3, 3, 0.93) 100%);
+            border: 1px solid rgba(214, 175, 55, 0.3);
             border-radius: 16px;
             padding: 45px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(17, 75, 79, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 0 30px rgba(74, 13, 13, 0.3);
             backdrop-filter: blur(12px);
             position: relative;
             transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
@@ -387,17 +492,16 @@
 
         .chapter-card:hover {
             border-color: rgba(255, 223, 122, 0.6);
-            box-shadow: 0 25px 60px rgba(17, 75, 79, 0.4), inset 0 0 40px rgba(255, 223, 122, 0.05);
+            box-shadow: 0 25px 60px rgba(92, 19, 19, 0.4), inset 0 0 40px rgba(255, 223, 122, 0.05);
             transform: translateY(-4px);
         }
 
-        /* Exklusives Gufeng-Kapitel-Abzeichen */
         .chapter-badge {
             position: absolute;
             top: -25px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--jade-light) 0%, var(--jade) 100%);
+            background: linear-gradient(135deg, var(--crimson-light) 0%, var(--crimson) 100%);
             border: 2px solid var(--gold-matte);
             padding: 6px 24px;
             border-radius: 20px;
@@ -416,7 +520,7 @@
             text-align: center;
             margin-bottom: 25px;
             letter-spacing: 3px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
         }
 
         .chapter-card h2::after {
@@ -432,7 +536,7 @@
         .chapter-content {
             font-size: 1.05rem;
             line-height: 1.9;
-            color: #d0e5de;
+            color: #f2ded6;
             text-align: center;
         }
 
@@ -443,10 +547,10 @@
         .highlight-text {
             color: var(--gold-bright);
             font-weight: bold;
-            text-shadow: 0 0 8px rgba(255, 223, 122, 0.2);
+            text-shadow: 0 0 8px rgba(255, 223, 122, 0.25);
         }
 
-        /* INTERAKTIVE REISEKARTE (KAPITEL 2) */
+        /* REISEKARTE (KAPITEL 2) */
         .quest-map {
             margin-top: 35px;
             display: flex;
@@ -464,7 +568,7 @@
             top: 10px;
             bottom: 10px;
             width: 2px;
-            background: rgba(214, 175, 55, 0.2);
+            background: rgba(214, 175, 55, 0.25);
         }
 
         .quest-step {
@@ -484,7 +588,7 @@
             top: 4px;
             width: 14px;
             height: 14px;
-            background: var(--jade);
+            background: var(--crimson);
             border: 2px solid var(--gold-matte);
             border-radius: 50%;
             box-shadow: 0 0 8px var(--gold-bright);
@@ -503,7 +607,7 @@
 
         .quest-desc {
             font-size: 0.95rem;
-            color: #a3c2b8;
+            color: #e3c7bf;
         }
 
         /* DATA TABLE (KAPITEL 3) */
@@ -515,8 +619,8 @@
         }
 
         .info-cell {
-            background: rgba(6, 12, 20, 0.6);
-            border: 1px solid rgba(214, 175, 55, 0.15);
+            background: rgba(20, 3, 3, 0.6);
+            border: 1px solid rgba(214, 175, 55, 0.2);
             border-radius: 8px;
             padding: 15px;
             text-align: center;
@@ -524,8 +628,8 @@
         }
 
         .info-cell:hover {
-            background: rgba(17, 75, 79, 0.3);
-            border-color: rgba(214, 175, 55, 0.3);
+            background: rgba(92, 19, 19, 0.3);
+            border-color: rgba(214, 175, 55, 0.4);
         }
 
         .info-label {
@@ -553,7 +657,7 @@
             text-align: center;
             padding: 60px 20px;
             position: relative;
-            background: linear-gradient(to top, rgba(164, 110, 39, 0.15) 0%, transparent 70%);
+            background: linear-gradient(to top, rgba(92, 19, 19, 0.2) 0%, transparent 70%);
         }
 
         .poetic-quote {
@@ -563,7 +667,7 @@
             color: #ffffff;
             margin-bottom: 35px;
             letter-spacing: 4px;
-            text-shadow: 0 0 15px rgba(255, 223, 122, 0.3);
+            text-shadow: 0 0 15px rgba(255, 223, 122, 0.35);
             max-width: 800px;
         }
 
@@ -576,26 +680,20 @@
             font-family: "Georgia", serif;
         }
 
-        .poetic-quote .source {
-            margin-top: 0.8rem;
-            font-size: 0.7rem;
-            font-style: normal;
-            opacity: 0.65;
-        }
-
         .final-call {
             font-size: 1.2rem;
-            color: #b5d1c9;
+            color: #f5ded6;
             max-width: 600px;
             line-height: 1.8;
         }
 
+        /* Der Siegel-Stempel in traditionellem Altrot gehalten */
         .gufeng-stamp {
             margin-top: 50px;
             width: 65px;
             height: 65px;
-            border: 2px solid #a62424;
-            color: #a62424;
+            border: 2px solid #b82323;
+            color: #b82323;
             font-family: var(--font-zh);
             font-weight: bold;
             font-size: 1.4rem;
@@ -605,9 +703,9 @@
             writing-mode: vertical-rl;
             letter-spacing: 2px;
             border-radius: 4px;
-            box-shadow: 0 0 10px rgba(166, 36, 36, 0.2);
-            opacity: 0.8;
-            background: rgba(6, 12, 20, 0.4);
+            box-shadow: 0 0 15px rgba(184, 35, 35, 0.3);
+            opacity: 0.9;
+            background: rgba(20, 3, 3, 0.5);
         }
 
         /* --- ANIMATIONS --- */
@@ -632,11 +730,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        @keyframes floatGently {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-12px); }
-        }
-
         /* --- RESPONSIVE OPTIMIZATIONS --- */
         @media (max-width: 768px) {
             .game-title-zh { font-size: 2.8rem; letter-spacing: 6px; }
@@ -646,6 +739,78 @@
             .chapter-card h2 { font-size: 1.7rem; }
             .poetic-quote { font-size: 1.6rem; }
             .envelope-container { width: 290px; height: 460px; }
+        }
+
+        /* -- Map -- */
+        .location-map-card {
+            position: relative;
+            width: min(900px, 100%);
+            height: 400px;
+            margin: 3rem auto;
+            border-radius: 28px;
+            overflow: hidden;
+
+            /* Glassmorphism */
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+
+            /* Moderne Schatten */
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.35),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .location-map-card iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter:
+                saturate(0.8)
+                contrast(0.6)
+                brightness(1.0);
+        }
+
+        /* Glow-Ränder */
+        .location-map-card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(255, 223, 122, 0.18),
+                    rgba(255, 255, 255, 0.08)
+                );
+            filter: blur(24px);
+            z-index: -1;
+        }
+
+        .map-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+            /*transform: translateX(-100%);*/
+
+            padding: 12px 18px;
+            border-radius: 999px;
+
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+
+            color: rgba(15, 15, 15, 0.671);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -662,35 +827,6 @@
     </div>
 
     <!-- 🎴 INTERAKTIVER EINSTIEG (ANCIENT MYSTIC ENVELOPE) -->
-    <!--
-    喜结良缘 (xǐ jié liáng yuán)
-    Bedeutung:  
-    Wörtlich: „Freudvoll ein gutes Band knüpfen“.
-    Sinngemäß: „Eine glückliche, vom Schicksal bestimmte Verbindung eingehen.“
-
-    Es ist ein traditioneller chinesischer Ausdruck, der verwendet wird, wenn zwei Menschen heiraten und ihr „gutes Schicksalsband“ besiegeln.
-    Er steht für:
-        Glück in der Ehe
-        Schicksalhafte Verbindung
-        Harmonie zwischen zwei Menschen
-        Ein gutes, glückbringendes Bündnis
-    Man findet ihn oft auf Einladungen, Bannern, Dekorationen oder als Segensspruch.
-
-    囍 (shuāng xǐ) – „Double Happiness“
-    Bedeutung:  
-    Das berühmte Doppelfreude‑Zeichen, bestehend aus zwei Mal 喜 (Freude).
-    Es symbolisiert:
-
-        Doppelte Freude
-
-        Glück der Braut und des Bräutigams
-
-        Vereinigung zweier Familien
-
-        Segen für eine glückliche Ehe
-
-    Es ist DAS ikonische chinesische Hochzeitssymbol – man sieht es auf Türen, Einladungen, roten Umschlägen, Dekorationen, Kleidung und Geschenken.
-    -->
     <div id="intro-overlay">
         <div class="envelope-container" onclick="openCelestialEnvelope()">
             <div class="envelope">
@@ -703,10 +839,20 @@
         </div>
     </div>
 
+    <audio id="openSound" src="mp3/click-button.mp3" preload="auto"></audio>
+
     <!-- ⚔️ MAIN INTERACTIVE GAME UI INTERFACE -->
     <div id="main-timeline-ui">
         <div class="gold-border-decor decor-tl"></div>
         <div class="gold-border-decor decor-br"></div>
+
+        <!-- AUDIO -->
+        <div class="audio-container">
+            <audio autoplay loop controls controlsList="nodownload">
+                <source src="mp3/chinese-ancient-style-music-love.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
         <!-- HERO INTRO -->
         <section class="hero-panel">
@@ -716,19 +862,7 @@
             </div>
             <div class="couple-names">Tobia & Shuyan</div>
             <div class="wedding-date">03. September 2026</div>
-            <!-- 
-            Alt: Über Berge, Flüsse, Grenzen und unzählige Dokumente hinweg haben sich unsere Wege gefunden. 
-             
-            Begründung für neu:
-            Warum „zwischen Bergen und Meeren“ hier absolut richtig ist.
-            Es ist poetisch gemeint, nicht geografisch wörtlich.
-            Die Formulierung beschreibt zwei Extreme – hohe Berge und weite Meere – und sagt damit bildhaft:
-            egal, welche Distanzen, Hindernisse oder Welten zwischen uns liegen, unsere Liebe hat ihren Weg gefunden.
 
-            Es geht also nicht darum, dass ihr buchstäblich zwischen einem Berg und einem Meer lebt, sondern darum, dass eure Liebe über alles hinweg entstanden ist.
-
-            In poetischen Texten ist „zwischen X und Y“ ein klassisches Stilmittel, um weite Spannbreiten auszudrücken. Genau das macht den Satz schön und emotional.
-            -->
             <p class="poetic-subtitle">
                 Zwischen Bergen und Meeren, über Kontinente hinweg, haben sich unsere Herzen gefunden.
             </p>
@@ -741,7 +875,7 @@
             <!-- CHAPTER 1 -->
             <div class="chapter-node">
                 <article class="chapter-card">
-                    <div class="chapter-badge">Kapitel I</div>  <!--为什么是丹麦?-->
+                    <div class="chapter-badge">Location</div>
                     <h2>Warum Dänemark?</h2>
                     <div class="chapter-content">
                         <p>Wir möchten unsere Liebe gemeinsam mit unseren liebsten Menschen feiern.</p>
@@ -756,12 +890,12 @@
             <!-- CHAPTER 2 -->
             <div class="chapter-node">
                 <article class="chapter-card">
-                    <div class="chapter-badge">Kapitel II</div>
+                    <div class="chapter-badge">Plan</div>
                     <h2>Unsere gemeinsame Reise</h2>
                     <div class="chapter-content">
                         <p>Keine große Luxusfeier. Sondern eine kleine gemeinsame Reise, an die wir uns erinnern werden.</p>
                         
-                        <!-- INTERACTIVE QUEST LOG STYLE MAP https://www.flensburg.de/index.php?object=tx,4204.503.1&oid=9,2529.1436.1-->
+                        <!-- INTERACTIVE QUEST LOG STYLE MAP -->
                         <div class="quest-map">
                             <div class="quest-step" onclick="window.location.href='https://www.flensburg.de/Leben-Soziales/Stadtportrait'">
                                 <div class="quest-icon"></div>
@@ -790,9 +924,94 @@
                         Die Stadt bietet eine hervorragende Infrastruktur, eine große Auswahl an schönen Unterkünften und damit den idealen Ausgangspunkt für unsere gemeinsame Reise.<br>
                         Mit ihrer großen, lebendigen Innenstadt, einer der längsten Einkaufsstraßen Deutschlands und mehreren modernen Einkaufszentren bietet Flensburg zudem eine vielfältige Mischung aus Boutiquen, bekannten Marken, historischen Höfen und gemütlichen Cafés, die zum Bummeln und Entdecken einlädt.<br>
                         Mit ihrem einzigartigen maritimen Flair, dem lebendigen Hafen, den historischen Kaufmannshöfen und der vielfältigen Gastronomie lädt Flensburg dazu ein, entspannt durch die Gassen zu schlendern, die besondere Atmosphäre der Förde zu erleben und immer wieder Neues zu entdecken.
+                        
+                        <div class="masonry-gallery">
+                            <div class="masonry-item">
+                                <img src="img/flensburg-9.avif">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/flensburg-7.avif">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/flensburg-8.avif">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/flensburg-2.avif">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/flensburg-3.avif">
+                            </div>
+                        </div>
+
+                        <div class="location-map-card">
+                            <div class="map-label">
+                                📍 Flensburg, Ort der Unterkunft
+                            </div>
+
+
+                            <!--
+                            src="https://www.google.com/maps?q=Flensburg,Germany&z=13&output=embed"
+                            src="https://maps.google.com/maps?q=54.7836,9.4357&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            -->
+                            <iframe
+                                src="https://maps.google.com/maps?q=54.7836,9.4357&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                style="border:0;"
+                                loading="lazy"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+
+
 
                             <br><br>
                         <span class="highlight-text">Apenrade</span> wird die romantische Kulisse unserer Hochzeit. Das charmante dänische Städtchen bietet einen intimen und entspannten Rahmen für unsere Trauung. Die idyllische Lage an der Förde und das historische Schloss Brundlund schaffen eine traumhafte Atmosphäre und machen diesen besonderen Tag zu einem unvergesslichen Erlebnis.</p>
+                    
+                        <!--
+                        <div class="masonry-gallery">
+                            <div class="masonry-item">
+                                <img src="img/apenrade-1.jpg">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/apenrade-2.jpg">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/apenrade-3.jpg">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/apenrade-7.jpg">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/apenrade-5.jpg">
+                            </div>
+                        </div>
+                        -->
+
+                        <div class="location-map-card">
+                            <div class="map-label">
+                                📍 Apenrade, Ort der Trauung
+                            </div>
+
+                            <!--
+                            src="https://www.google.com/maps?q=Apenrade,Dänemark&z=13&output=embed"
+                            src="https://www.google.com/maps?q=55.0441,9.4182&z=13&output=embed"
+                            -->
+                            <iframe
+                                src="https://www.google.com/maps?q=55.0441,9.4182&z=13&output=embed"
+                                style="border:0;"
+                                loading="lazy"
+                                allowfullscreen>
+                            </iframe>
+
+                            <!--
+                            <iframe 
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=9.3782%2C55.0241%2C9.4582%2C55.0641&amp;layer=mapnik&amp;marker=55.0441%2C9.4182" 
+                                style="border:0;" 
+                                loading="lazy"
+                                allowfullscreen>
+                            </iframe>
+                            -->
+                        </div>
+
                     </div>
                 </article>
             </div>
@@ -800,7 +1019,7 @@
             <!-- CHAPTER 3 -->
             <div class="chapter-node">
                 <article class="chapter-card">
-                    <div class="chapter-badge">Kapitel III</div>
+                    <div class="chapter-badge">Zusammenfassung</div>
                     <h2>Wichtige Informationen</h2>
                     <div class="chapter-content">
                         
@@ -834,63 +1053,92 @@
                     </div>
                 </article>
             </div>
+
+
+            <!-- CHAPTER 4: DYNAMISCHE BILDER-COLLAGE -->
+            <div class="chapter-node">
+                <article class="chapter-card">
+                    <div class="chapter-badge">Impressionen</div>
+                    <div class="masonry-wrapper">
+                        <h2 class="gallery-headline">Bilder von uns</h2>
+                        
+                        <div class="masonry-gallery">
+                            <div class="masonry-item">
+                                <img src="img/couple-1.jpg" alt="Tobia & Shuyan 1">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-2.jpg" alt="Tobia & Shuyan 2">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-3.png" alt="Tobia & Shuyan 3">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-4.jpg" alt="Tobia & Shuyan 4">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-5.jpg" alt="Tobia & Shuyan 5">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-6.jpg" alt="Tobia & Shuyan 6">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-7.jpg" alt="Tobia & Shuyan 7">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-8.jpg" alt="Tobia & Shuyan 8">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-9.jpg" alt="Tobia & Shuyan 9">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-10.jpg" alt="Tobia & Shuyan 10">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-11.jpg" alt="Tobia & Shuyan 11">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/couple-12.jpg" alt="Tobia & Shuyan 12">
+                            </div>
+                        </div>
+                </article>
+            </div>
+
+
         </div>
 
+        
         <!-- FINALE OUTRO SCENE -->
         <section class="outro-panel">
-            <!--
-            <p class="poetic-quote">„Die schönsten Wege entstehen, wenn man sie gemeinsam geht.“</p>
-            <p class="final-call">Wir würden uns von Herzen freuen, wenn du diesen Weg ein kleines Stück mit uns gehst.</p>
-
-            <p class="final-call">An den Ufern der Förde, unter den Sternen, die unsere Herzen von Fernost bis ins Herz Europas verbunden haben.</p>
-
-            <p class="poetic-quote">„執子之手，與子偕老“<br><br>„Deine Hand in meiner - gemeinsam bis ins Alter.“</p>
-            <p class="poetic-quote">„兩情若是久長時，又豈在朝朝暮暮“<br><br>„Wenn zwei Herzen wirklich füreinander bestimmt sind, spielt Nähe oder Entfernung keine Rolle.“</p>
-            <p class="poetic-quote">„山海相隔，心意相连；良缘自天成“<br><br>„Berge und Meere mögen uns trennen, doch unsere Herzen sind verbunden; ein gutes Schicksalsband, vom Himmel bestimmt.“</p>
-            -->
-
             <blockquote class="poetic-quote">
                 <p class="cn">「山海相隔，心意相连；良缘自天成」</p>
                 <p class="de">„Berge und Meere mögen uns trennen, doch unsere Herzen sind verbunden; ein gutes Schicksalsband, vom Himmel bestimmt.“</p>
             </blockquote>
-            
-            
-            <!--
-            <blockquote class="poetic-quote">
-                <p class="cn">「兩情若是久長時，又豈在朝朝暮暮」</p>
-                <p class="de">„Wenn zwei Herzen wirklich füreinander bestimmt sind, spielt Nähe oder Entfernung keine Rolle.“</p>
-                <footer class="source">Qin Guan (秦觀), <br>„鵲橋仙·纖雲弄巧“ (Die Unsterblichen der Elsterbrücke - Feine Wolken weben kunstvoll),<br>Song-Dynastie</footer>
-            </blockquote>
-            -->
 
-
-            <p class="final-call" style="margin-top:1cm;"">An den Ufern der Förde, unter jenen Sternen, die unsere Herzen von Fernost bis ins Herz Europas geführt haben.</p>
+            <p class="final-call" style="margin-top:1cm;">An den Ufern der Förde, unter jenen Sternen, die unsere Herzen von Fernost bis ins Herz Europas geführt haben.</p>
             <div class="gufeng-stamp">百年<br>好合</div>
-            <!--
-            百年好合 (bǎi nián hǎo hé)
-
-            Wörtlich: „Hundert Jahre in Harmonie vereint“  
-            Sinngemäß: „Möget ihr ein Leben lang glücklich zusammen sein.“
-
-            Es ist einer der klassischsten und edelsten chinesischen Hochzeitssprüche.
-            -->
         </section>
     </div>
 
     <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
-        // --- CINEATIC TRANSITION: OPEN ENVELOPE ---
+        // --- CINEMATIC TRANSITION: OPEN ENVELOPE ---
         function openCelestialEnvelope() {
             const container = document.querySelector('.envelope-container');
             const overlay = document.getElementById('intro-overlay');
             const mainUi = document.getElementById('main-timeline-ui');
+            const sound = document.getElementById('openSound');
             
             container.classList.add('opening');
+
+            sound.currentTime = 0; // restart if already played
+            sound.play().catch(err => {
+                console.error('Could not play sound:', err);
+            });
             
             setTimeout(() => {
                 overlay.classList.add('fade-out');
                 mainUi.classList.add('visible');
-                document.body.style.overflowY = 'auto'; // Aktiviert das Scrolling für die Reise
+                document.body.style.overflowY = 'auto';
             }, 1200);
         }
 
@@ -933,7 +1181,7 @@
                 ctx.shadowBlur = 8;
                 ctx.shadowColor = '#d4af37';
                 ctx.fill();
-                ctx.shadowBlur = 0; // Reset für Performance
+                ctx.shadowBlur = 0;
             }
         }
 
@@ -968,9 +1216,7 @@
             });
         }
 
-        // Event-Listener an das scrollbare UI-Element hängen
         mainUiContainer.addEventListener('scroll', checkNodesVisibility);
-        // Initiale Prüfung nach dem Laden
         window.addEventListener('load', checkNodesVisibility);
     </script>
 </body>
