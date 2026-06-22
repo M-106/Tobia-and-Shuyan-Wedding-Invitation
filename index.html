@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山海之间 · Between Mountains and Seas</title>
+    <style>
+        /* --- CORE STYLES & FONTS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+SC:wght@300;500;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+        :root {
+            --bg-dark: #060c14;
+            --jade: #0d2b23;
+            --jade-light: #1b4d3e;
+            --emerald: #0a3d30;
+            --teal: #114b4f;
+            --gold-matte: #d4af37;
+            --gold-bright: #ffdf7a;
+            --gold-dark: #9a7b1c;
+            --mist: rgba(230, 245, 240, 0.06);
+            --font-zh: 'Noto Serif SC', serif;
+            --font-en: 'Cinzel', serif;
+            --font-sans: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e0f0ea;
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            overflow-y: hidden; /* Behält Kontrolle während des Intros */
+            height: 100vh;
+            user-select: none;
+        }
+
+        /* --- GLOBAL CINEMATIC BACKGROUND --- */
+        .cinematic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: radial-gradient(circle at 50% 30%, var(--teal) 0%, var(--jade) 40%, var(--bg-dark) 85%);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Tintentexturen & Nebel-Ebenen */
+        .ink-wash {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(10, 61, 48, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(17, 75, 79, 0.3) 0%, transparent 60%);
+            filter: blur(60px);
+            animation: inkFlow 40s infinite alternate ease-in-out;
+        }
+
+        .mist-layer {
+            position: absolute;
+            width: 300%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to top, rgba(6, 12, 20, 0.8) 0%, var(--mist) 40%, transparent 100%);
+            filter: blur(20px);
+            animation: mistDrift 60s infinite linear;
+            opacity: 0.7;
+        }
+
+        /* Bergsilhouetten (CSS-generiertes Landschaftspanorama) */
+        .mountain-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 45vh;
+            background: linear-gradient(to top, #04080e 30%, transparent 100%);
+            clip-path: polygon(0% 80%, 15% 55%, 32% 70%, 50% 40%, 68% 65%, 85% 45%, 100% 75%, 100% 100%, 0% 100%);
+            opacity: 0.5;
+            z-index: 2;
+        }
+
+        .mountain-back {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60vh;
+            background: linear-gradient(to top, rgba(13, 43, 35, 0.6) 20%, transparent 100%);
+            clip-path: polygon(0% 90%, 20% 60%, 45% 75%, 70% 50%, 90% 70%, 100% 85%, 100% 100%, 0% 100%);
+            opacity: 0.3;
+            z-index: 1;
+            transform: scaleX(1.2);
+        }
+
+        /* Der majestätische Mond */
+        .mystic-moon {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, #fffdf0 0%, #fffaaf 30%, rgba(212, 175, 55, 0.2) 60%, transparent 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 80px rgba(255, 250, 175, 0.4);
+            z-index: 1;
+            opacity: 0.75;
+        }
+
+        /* Goldene Partikel */
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* --- FILIGRANE ORNAMENTE (Gufeng-Stil) --- */
+        .gold-border-decor {
+            position: absolute;
+            border: 1px solid rgba(214, 175, 55, 0.3);
+            pointer-events: none;
+        }
+        .decor-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; width: 40px; height: 40px; }
+        .decor-tl::before { content: ''; position: absolute; top: 4px; left: 4px; width: 8px; height: 8px; border: 1px solid var(--gold-matte); border-right: none; border-bottom: none; }
+        .decor-br { bottom: 20px; right: 20px; border-left: none; border-top: none; width: 40px; height: 40px; }
+        .decor-br::before { content: ''; position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px; border: 1px solid var(--gold-matte); border-left: none; border-top: none; }
+
+        /* --- INTERAKTIVER INTRO-UMSCHLAG (HONGBAO ELITE) --- */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #081612 0%, #030706 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.8s cubic-bezier(0.77, 0, 0.175, 1), visibility 1.8s;
+            overflow: hidden;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 340px;
+            height: 520px;
+            cursor: pointer;
+            perspective: 1200px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .envelope-container:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4a0d0d 0%, #2b0505 50%, #1a0202 100%);
+            border: 2px solid rgba(214, 175, 55, 0.4);
+            border-radius: 12px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.9), inset 0 0 40px rgba(10, 61, 48, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 20px;
+            overflow: hidden;
+            transition: all 0.8s ease;
+        }
+
+        /* Brokat/Seidenmuster-Subtilität im Umschlag */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(214, 175, 55, 0.15) 1px, transparent 0px);
+            background-size: 16px 16px;
+            opacity: 0.4;
+        }
+
+        .envelope-seal {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #fff3cd 0%, var(--gold-bright) 20%, var(--gold-matte) 60%, var(--gold-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-zh);
+            font-size: 2.2rem;
+            color: #2b0505;
+            font-weight: bold;
+            box-shadow: 0 0 30px rgba(255, 223, 122, 0.6), inset 0 0 10px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
+            animation: sealPulse 2.5s infinite alternate ease-in-out;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .envelope-title {
+            font-family: var(--font-zh);
+            font-size: 1.6rem;
+            color: var(--gold-bright);
+            letter-spacing: 6px;
+            text-align: center;
+            writing-mode: vertical-rl;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            height: 180px;
+            margin-top: 10px;
+        }
+
+        .envelope-footer {
+            font-family: var(--font-en);
+            font-size: 0.75rem;
+            color: var(--gold-matte);
+            letter-spacing: 4px;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        /* Umschlag-Öffnungs-Animationen */
+        .envelope-container.opening {
+            animation: envelopeBreak 1.5s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+
+        #intro-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- MAIN INTERACTIVE GAME UI LAYOUT --- */
+        #main-timeline-ui {
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            transition: opacity 2.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        #main-timeline-ui.visible {
+            opacity: 1;
+        }
+
+        /* --- SECTION 1: INTRO MAIN SCREEN --- */
+        .hero-panel {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .game-title-group {
+            position: relative;
+            z-index: 5;
+            margin-bottom: 40px;
+            /*animation: floatGently 6s infinite alternate ease-in-out;*/
+        }
+
+        .game-title-zh {
+            font-family: var(--font-zh);
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(to bottom, #ffffff 30%, var(--gold-bright) 70%, var(--gold-matte) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 12px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.8));
+        }
+
+        .game-title-en {
+            font-family: var(--font-en);
+            font-size: 1.5rem;
+            color: var(--gold-matte);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(214, 175, 55, 0.3);
+            padding-bottom: 15px;
+            display: inline-block;
+            max-width: 80vw;
+        }
+
+        .couple-names {
+            font-family: var(--font-en);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin: 25px 0 10px 0;
+            text-shadow: 0 0 20px rgba(17, 75, 79, 0.8);
+        }
+
+        .wedding-date {
+            font-family: var(--font-zh);
+            font-size: 1.3rem;
+            color: var(--gold-bright);
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .poetic-subtitle {
+            font-size: 1.1rem;
+            max-width: 600px;
+            line-height: 1.8;
+            color: #b5d1c9;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            font-style: italic;
+            padding: 0 20px;
+        }
+
+        /* --- THE CHAPTER JOURNEY PATH --- */
+        .journey-container {
+            position: relative;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Der goldene Schicksalspfad (Verbindungslinie) */
+        .gold-destiny-path {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent 0%, var(--gold-matte) 15%, var(--gold-bright) 50%, var(--gold-matte) 85%, transparent 100%);
+            box-shadow: 0 0 10px rgba(255, 223, 122, 0.5);
+            z-index: 1;
+        }
+
+        /* KAPITEL-KNOTEN DESIGN */
+        .chapter-node {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 750px;
+            margin: 120px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .chapter-node.node-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chapter-card {
+            background: linear-gradient(145deg, rgba(13, 43, 37, 0.85) 0%, rgba(6, 12, 20, 0.9) 100%);
+            border: 1px solid rgba(214, 175, 55, 0.25);
+            border-radius: 16px;
+            padding: 45px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(17, 75, 79, 0.2);
+            backdrop-filter: blur(12px);
+            position: relative;
+            transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+        }
+
+        .chapter-card:hover {
+            border-color: rgba(255, 223, 122, 0.6);
+            box-shadow: 0 25px 60px rgba(17, 75, 79, 0.4), inset 0 0 40px rgba(255, 223, 122, 0.05);
+            transform: translateY(-4px);
+        }
+
+        /* Exklusives Gufeng-Kapitel-Abzeichen */
+        .chapter-badge {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--jade-light) 0%, var(--jade) 100%);
+            border: 2px solid var(--gold-matte);
+            padding: 6px 24px;
+            border-radius: 20px;
+            font-family: var(--font-en);
+            font-size: 0.85rem;
+            color: var(--gold-bright);
+            letter-spacing: 3px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+        }
+
+        .chapter-card h2 {
+            font-family: var(--font-zh);
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .chapter-card h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: var(--gold-matte);
+            margin: 12px auto 0 auto;
+            box-shadow: 0 0 5px var(--gold-bright);
+        }
+
+        .chapter-content {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #d0e5de;
+            text-align: center;
+        }
+
+        .chapter-content p {
+            margin-bottom: 18px;
+        }
+
+        .highlight-text {
+            color: var(--gold-bright);
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 223, 122, 0.2);
+        }
+
+        /* INTERAKTIVE REISEKARTE (KAPITEL 2) */
+        .quest-map {
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .quest-map::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: rgba(214, 175, 55, 0.2);
+        }
+
+        .quest-step {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .quest-step:hover {
+            transform: translateX(5px);
+        }
+
+        .quest-icon {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            background: var(--jade);
+            border: 2px solid var(--gold-matte);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--gold-bright);
+            transition: background-color 0.3s;
+        }
+
+        .quest-step:hover .quest-icon {
+            background-color: var(--gold-bright);
+        }
+
+        .quest-title {
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .quest-desc {
+            font-size: 0.95rem;
+            color: #a3c2b8;
+        }
+
+        /* DATA TABLE (KAPITEL 3) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .info-cell {
+            background: rgba(6, 12, 20, 0.6);
+            border: 1px solid rgba(214, 175, 55, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .info-cell:hover {
+            background: rgba(17, 75, 79, 0.3);
+            border-color: rgba(214, 175, 55, 0.3);
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--gold-matte);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            font-family: var(--font-en);
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        /* --- OUTRO SECTION --- */
+        .outro-panel {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            background: linear-gradient(to top, rgba(164, 110, 39, 0.15) 0%, transparent 70%);
+        }
+
+        .poetic-quote {
+            font-family: var(--font-zh);
+            font-size: 2.2rem;
+            line-height: 1.8;
+            color: #ffffff;
+            margin-bottom: 35px;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(255, 223, 122, 0.3);
+            max-width: 800px;
+        }
+
+        .poetic-quote .cn {
+            font-family: "Noto Serif SC", "Songti SC", serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .poetic-quote .de {
+            font-family: "Georgia", serif;
+        }
+
+        .poetic-quote .source {
+            margin-top: 0.8rem;
+            font-size: 0.7rem;
+            font-style: normal;
+            opacity: 0.65;
+        }
+
+        .final-call {
+            font-size: 1.2rem;
+            color: #b5d1c9;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .gufeng-stamp {
+            margin-top: 50px;
+            width: 65px;
+            height: 65px;
+            border: 2px solid #a62424;
+            color: #a62424;
+            font-family: var(--font-zh);
+            font-weight: bold;
+            font-size: 1.4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            writing-mode: vertical-rl;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(166, 36, 36, 0.2);
+            opacity: 0.8;
+            background: rgba(6, 12, 20, 0.4);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes sealPulse {
+            0% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 223, 122, 0.5); }
+            100% { transform: scale(1.05); box-shadow: 0 0 45px rgba(255, 223, 122, 0.8), 0 0 20px rgba(255,255,255,0.3); }
+        }
+
+        @keyframes envelopeBreak {
+            0% { transform: scale(1); opacity: 1; }
+            40% { transform: scale(1.08) rotate(-2deg); filter: brightness(1.5); }
+            100% { transform: scale(2) cubic-bezier(0.77, 0, 0.175, 1); opacity: 0; filter: blur(10px); }
+        }
+
+        @keyframes inkFlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5%, 5%) scale(1.1); }
+        }
+
+        @keyframes mistDrift {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes floatGently {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-12px); }
+        }
+
+        /* --- RESPONSIVE OPTIMIZATIONS --- */
+        @media (max-width: 768px) {
+            .game-title-zh { font-size: 2.8rem; letter-spacing: 6px; }
+            .game-title-en { font-size: 1.1rem; letter-spacing: 4px; }
+            .couple-names { font-size: 2.1rem; }
+            .chapter-card { padding: 30px 20px; }
+            .chapter-card h2 { font-size: 1.7rem; }
+            .poetic-quote { font-size: 1.6rem; }
+            .envelope-container { width: 290px; height: 460px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STUNNING CINEMATIC GRAPHICS SYSTEM -->
+    <div class="cinematic-bg">
+        <div class="ink-wash"></div>
+        <div class="mystic-moon"></div>
+        <div class="mountain-back"></div>
+        <div class="mountain-silhouette"></div>
+        <div class="mist-layer"></div>
+        <canvas id="particles-canvas"></canvas>
+    </div>
+
+    <!-- 🎴 INTERAKTIVER EINSTIEG (ANCIENT MYSTIC ENVELOPE) -->
+    <!--
+    喜结良缘 (xǐ jié liáng yuán)
+    Bedeutung:  
+    Wörtlich: „Freudvoll ein gutes Band knüpfen“.
+    Sinngemäß: „Eine glückliche, vom Schicksal bestimmte Verbindung eingehen.“
+
+    Es ist ein traditioneller chinesischer Ausdruck, der verwendet wird, wenn zwei Menschen heiraten und ihr „gutes Schicksalsband“ besiegeln.
+    Er steht für:
+        Glück in der Ehe
+        Schicksalhafte Verbindung
+        Harmonie zwischen zwei Menschen
+        Ein gutes, glückbringendes Bündnis
+    Man findet ihn oft auf Einladungen, Bannern, Dekorationen oder als Segensspruch.
+
+    囍 (shuāng xǐ) – „Double Happiness“
+    Bedeutung:  
+    Das berühmte Doppelfreude‑Zeichen, bestehend aus zwei Mal 喜 (Freude).
+    Es symbolisiert:
+
+        Doppelte Freude
+
+        Glück der Braut und des Bräutigams
+
+        Vereinigung zweier Familien
+
+        Segen für eine glückliche Ehe
+
+    Es ist DAS ikonische chinesische Hochzeitssymbol – man sieht es auf Türen, Einladungen, roten Umschlägen, Dekorationen, Kleidung und Geschenken.
+    -->
+    <div id="intro-overlay">
+        <div class="envelope-container" onclick="openCelestialEnvelope()">
+            <div class="envelope">
+                <div class="gold-border-decor decor-tl"></div>
+                <div class="gold-border-decor decor-br"></div>
+                <div class="envelope-title">喜结良缘 · Double Happiness</div>
+                <div class="envelope-seal">囍</div>
+                <div class="envelope-footer">Hochzeits-Einladung<br><br><br>Tobia & Shuyan · Open</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ⚔️ MAIN INTERACTIVE GAME UI INTERFACE -->
+    <div id="main-timeline-ui">
+        <div class="gold-border-decor decor-tl"></div>
+        <div class="gold-border-decor decor-br"></div>
+
+        <!-- HERO INTRO -->
+        <section class="hero-panel">
+            <div class="game-title-group">
+                <h1 class="game-title-zh">山海之间</h1>
+                <div class="game-title-en">Between Mountains and Seas</div>
+            </div>
+            <div class="couple-names">Tobia & Shuyan</div>
+            <div class="wedding-date">03. September 2026</div>
+            <!-- 
+            Alt: Über Berge, Flüsse, Grenzen und unzählige Dokumente hinweg haben sich unsere Wege gefunden. 
+             
+            Begründung für neu:
+            Warum „zwischen Bergen und Meeren“ hier absolut richtig ist.
+            Es ist poetisch gemeint, nicht geografisch wörtlich.
+            Die Formulierung beschreibt zwei Extreme – hohe Berge und weite Meere – und sagt damit bildhaft:
+            egal, welche Distanzen, Hindernisse oder Welten zwischen uns liegen, unsere Liebe hat ihren Weg gefunden.
+
+            Es geht also nicht darum, dass ihr buchstäblich zwischen einem Berg und einem Meer lebt, sondern darum, dass eure Liebe über alles hinweg entstanden ist.
+
+            In poetischen Texten ist „zwischen X und Y“ ein klassisches Stilmittel, um weite Spannbreiten auszudrücken. Genau das macht den Satz schön und emotional.
+            -->
+            <p class="poetic-subtitle">
+                Zwischen Bergen und Meeren, über Kontinente hinweg, haben sich unsere Herzen gefunden.
+            </p>
+        </section>
+
+        <!-- THE CHAPTER PATHWAY -->
+        <div class="journey-container">
+            <div class="gold-destiny-path"></div>
+
+            <!-- CHAPTER 1 -->
+            <div class="chapter-node">
+                <article class="chapter-card">
+                    <div class="chapter-badge">Kapitel I</div>  <!--为什么是丹麦?-->
+                    <h2>Warum Dänemark?</h2>
+                    <div class="chapter-content">
+                        <p>Wir möchten unsere Liebe gemeinsam mit unseren liebsten Menschen feiern.</p>
+                        <p>Wie du vielleicht bereits weißt, bringt eine deutsch-chinesische Hochzeit viele organisatorische und dokumentarische Hürden mit sich. Als zwei Studenten verfügen wir weder über ein großes Budget noch über die Möglichkeit, eine aufwendige Feier zu organisieren.</p>
+                        <p>Deshalb haben wir uns für einen einfacheren Weg entschieden:</p>
+                        <p class="highlight-text">Eine kleine, persönliche Hochzeit in Dänemark - und die Gelegenheit, gemeinsam eine besondere Zeit an der Förde zu verbringen.</p>
+                        <p>Vielleicht nicht perfekt. Aber voller Herz. Und wir würden uns unglaublich freuen, wenn du Teil dieses besonderen Tages wirst.</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CHAPTER 2 -->
+            <div class="chapter-node">
+                <article class="chapter-card">
+                    <div class="chapter-badge">Kapitel II</div>
+                    <h2>Unsere kleine Reise</h2>
+                    <div class="chapter-content">
+                        <p>Keine große Luxusfeier. Sondern eine kleine gemeinsame Reise, an die wir uns erinnern werden.</p>
+                        
+                        <!-- INTERACTIVE QUEST LOG STYLE MAP https://www.flensburg.de/index.php?object=tx,4204.503.1&oid=9,2529.1436.1-->
+                        <div class="quest-map">
+                            <div class="quest-step" onclick="window.location.href='https://www.flensburg.de/Leben-Soziales/Stadtportrait'">
+                                <div class="quest-icon"></div>
+                                <div class="quest-title">🚆 Die Anreise</div>
+                                <div class="quest-desc">Gemeinsam mit dem Zug nach Flensburg</div>
+                            </div>
+                            <div class="quest-step" onclick="window.location.href='https://www.booking.com/hotel/de/stadtnah-an-der-forde-27-3-og-r.de.html'">
+                                <div class="quest-icon"></div>
+                                <div class="quest-title">🏡 Die Unterkunft</div>
+                                <div class="quest-desc">Gemeinsame Unterkunft in Flensburg</div>
+                            </div>
+                            <div class="quest-step" onclick="window.location.href='https://www.flensburger-foerde.de/'">
+                                <div class="quest-icon"></div>
+                                <div class="quest-title">🌊 Erkundung</div>
+                                <div class="quest-desc">Gemeinsam Flensburg erleben</div>
+                            </div>
+                            <div class="quest-step" onclick="window.location.href='https://weites.land/aabenraa-abenra-apenrade/'">
+                                <div class="quest-icon"></div>
+                                <div class="quest-title">💍 Das Bündnis</div>
+                                <div class="quest-desc">Ausflug nach Apenrade zur Trauung</div>
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <p><span class="highlight-text">Flensburg</span> ist für uns der perfekte Ort zum Ankommen, Entdecken und Genießen.<br>
+                        Die Stadt bietet eine hervorragende Infrastruktur, eine große Auswahl an schönen Unterkünften und damit den idealen Ausgangspunkt für unsere gemeinsame Reise.<br>
+                        Mit ihrer großen, lebendigen Innenstadt, einer der längsten Einkaufsstraßen Deutschlands und mehreren modernen Einkaufszentren bietet Flensburg zudem eine vielfältige Mischung aus Boutiquen, bekannten Marken, historischen Höfen und gemütlichen Cafés, die zum Bummeln und Entdecken einlädt.<br>
+                        Mit ihrem einzigartigen maritimen Flair, dem lebendigen Hafen, den historischen Kaufmannshöfen und der vielfältigen Gastronomie lädt Flensburg dazu ein, entspannt durch die Gassen zu schlendern, die besondere Atmosphäre der Förde zu erleben und immer wieder Neues zu entdecken.
+
+                            <br><br>
+                        <span class="highlight-text">Apenrade</span> wird die romantische Kulisse unserer Hochzeit. Das charmante dänische Städtchen bietet einen intimen und entspannten Rahmen für unsere Trauung. Die idyllische Lage an der Förde und das historische Schloss Brundlund schaffen eine traumhafte Atmosphäre und machen diesen besonderen Tag zu einem unvergesslichen Erlebnis.</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CHAPTER 3 -->
+            <div class="chapter-node">
+                <article class="chapter-card">
+                    <div class="chapter-badge">Kapitel III</div>
+                    <h2>Wichtige Informationen</h2>
+                    <div class="chapter-content">
+                        
+                        <!-- HIGH END GAME DATA COMPONENT -->
+                        <div class="info-grid">
+                            <div class="info-cell">
+                                <div class="info-label">Brautpaar</div>
+                                <div class="info-value">Tobia & Shuyan</div>
+                            </div>
+                            <div class="info-cell">
+                                <div class="info-label">Datum</div>
+                                <div class="info-value">02-05.09.2026</div>
+                            </div>
+                            <div class="info-cell">
+                                <div class="info-label">Unterkunft</div>
+                                <div class="info-value">Flensburg</div>
+                            </div>
+                            <div class="info-cell">
+                                <div class="info-label">Trauung</div>
+                                <div class="info-value">Apenrade (DK)</div>
+                            </div>
+                            <div class="info-cell">
+                                <div class="info-label">Kosten</div>
+                                <div class="info-value">In Planung</div>
+                            </div>
+                            <div class="info-cell">
+                                <div class="info-label">Rückfragen</div>
+                                <div class="info-value">Direkt bei uns</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- FINALE OUTRO SCENE -->
+        <section class="outro-panel">
+            <!--
+            <p class="poetic-quote">„Die schönsten Wege entstehen, wenn man sie gemeinsam geht.“</p>
+            <p class="final-call">Wir würden uns von Herzen freuen, wenn du diesen Weg ein kleines Stück mit uns gehst.</p>
+
+            <p class="final-call">An den Ufern der Förde, unter den Sternen, die unsere Herzen von Fernost bis ins Herz Europas verbunden haben.</p>
+
+            <p class="poetic-quote">„執子之手，與子偕老“<br><br>„Deine Hand in meiner - gemeinsam bis ins Alter.“</p>
+            <p class="poetic-quote">„兩情若是久長時，又豈在朝朝暮暮“<br><br>„Wenn zwei Herzen wirklich füreinander bestimmt sind, spielt Nähe oder Entfernung keine Rolle.“</p>
+            <p class="poetic-quote">„山海相隔，心意相连；良缘自天成“<br><br>„Berge und Meere mögen uns trennen, doch unsere Herzen sind verbunden; ein gutes Schicksalsband, vom Himmel bestimmt.“</p>
+            -->
+
+            <blockquote class="poetic-quote">
+                <p class="cn">「山海相隔，心意相连；良缘自天成」</p>
+                <p class="de">„Berge und Meere mögen uns trennen, doch unsere Herzen sind verbunden; ein gutes Schicksalsband, vom Himmel bestimmt.“</p>
+            </blockquote>
+            
+            
+            <!--
+            <blockquote class="poetic-quote">
+                <p class="cn">「兩情若是久長時，又豈在朝朝暮暮」</p>
+                <p class="de">„Wenn zwei Herzen wirklich füreinander bestimmt sind, spielt Nähe oder Entfernung keine Rolle.“</p>
+                <footer class="source">Qin Guan (秦觀), <br>„鵲橋仙·纖雲弄巧“ (Die Unsterblichen der Elsterbrücke - Feine Wolken weben kunstvoll),<br>Song-Dynastie</footer>
+            </blockquote>
+            -->
+
+
+            <p class="final-call" style="margin-top:3cm;"">An den Ufern der Förde, unter jenen Sternen, die unsere Herzen von Fernost bis ins Herz Europas geführt haben.</p>
+            <div class="gufeng-stamp">百年<br>好合</div>
+            <!--
+            百年好合 (bǎi nián hǎo hé)
+
+            Wörtlich: „Hundert Jahre in Harmonie vereint“  
+            Sinngemäß: „Möget ihr ein Leben lang glücklich zusammen sein.“
+
+            Es ist einer der klassischsten und edelsten chinesischen Hochzeitssprüche.
+            -->
+        </section>
+    </div>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // --- CINEATIC TRANSITION: OPEN ENVELOPE ---
+        function openCelestialEnvelope() {
+            const container = document.querySelector('.envelope-container');
+            const overlay = document.getElementById('intro-overlay');
+            const mainUi = document.getElementById('main-timeline-ui');
+            
+            container.classList.add('opening');
+            
+            setTimeout(() => {
+                overlay.classList.add('fade-out');
+                mainUi.classList.add('visible');
+                document.body.style.overflowY = 'auto'; // Aktiviert das Scrolling für die Reise
+            }, 1200);
+        }
+
+        // --- AAA ENGINE GOLD PARTICLE SYSTEM ---
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        class GoldParticle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height + height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedY = -(Math.random() * 0.8 + 0.3);
+                this.speedX = Math.sin(Math.random() * 2) * 0.3;
+                this.opacity = Math.random() * 0.6 + 0.2;
+                this.fadeRate = Math.random() * 0.005 + 0.002;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                if (this.y < -10) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 223, 122, ${this.opacity})`;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#d4af37';
+                ctx.fill();
+                ctx.shadowBlur = 0; // Reset für Performance
+            }
+        }
+
+        const particleCount = 65;
+        const particlesArray = [];
+        for (let i = 0; i < particleCount; i++) {
+            particlesArray.push(new GoldParticle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // --- INTERACTIVE SCROLL TRIGGER (CHAPTER NODES FADE-IN) ---
+        const nodes = document.querySelectorAll('.chapter-node');
+        const mainUiContainer = document.getElementById('main-timeline-ui');
+
+        function checkNodesVisibility() {
+            const triggerBottom = window.innerHeight * 0.85;
+            
+            nodes.forEach(node => {
+                const nodeTop = node.getBoundingClientRect().top;
+                if (nodeTop < triggerBottom) {
+                    node.classList.add('node-visible');
+                }
+            });
+        }
+
+        // Event-Listener an das scrollbare UI-Element hängen
+        mainUiContainer.addEventListener('scroll', checkNodesVisibility);
+        // Initiale Prüfung nach dem Laden
+        window.addEventListener('load', checkNodesVisibility);
+    </script>
+</body>
+</html>
