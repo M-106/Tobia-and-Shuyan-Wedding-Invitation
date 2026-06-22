@@ -771,7 +771,6 @@
                 saturate(0.8)
                 contrast(0.6)
                 brightness(1.0);
-            pointer-events: none;
         }
 
         /* Glow-Ränder */
@@ -812,6 +811,30 @@
             box-shadow:
                 0 10px 30px rgba(0, 0, 0, 0.2),
                 inset 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Leicht abgedunkelt */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10; /* Liegt über der Karte */
+            font-family: var(--font-sans);
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(4px); /* Macht die Karte darunter leicht unscharf beim Scrollen */
+        }
+
+        /* Wenn das Schutzschild die Klasse .clicked bekommt, wird es unsichtbar und lässt Klicks durch */
+        .location-map-card.active .map-overlay {
+            opacity: 0;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -944,10 +967,12 @@
                             </div>
                         </div>
 
-                        <div class="location-map-card">
+                        <div class="location-map-card" onclick="activateMap(this)">
                             <div class="map-label">
                                 📍 Flensburg, Ort der Unterkunft
                             </div>
+
+                            <div class="map-overlay">Tippen, um die Karte zu aktivieren</div>
 
 
                             <!--
@@ -958,7 +983,7 @@
                                 src="https://maps.google.com/maps?q=54.7836,9.4357&t=&z=13&ie=UTF8&iwloc=&output=embed"
                                 style="border:0;"
                                 loading="lazy"
-                                allowfullscreen>
+                                allowfullscreen="">
                             </iframe>
                         </div>
 
@@ -987,10 +1012,12 @@
                         </div>
                         -->
 
-                        <div class="location-map-card">
+                        <div class="location-map-card" onclick="activateMap(this)">
                             <div class="map-label">
                                 📍 Apenrade, Ort der Trauung
                             </div>
+
+                            <div class="map-overlay">Tippen, um die Karte zu aktivieren</div>
 
                             <!--
                             src="https://www.google.com/maps?q=Apenrade,Dänemark&z=13&output=embed"
@@ -1000,7 +1027,7 @@
                                 src="https://www.google.com/maps?q=55.0441,9.4182&z=13&output=embed"
                                 style="border:0;"
                                 loading="lazy"
-                                allowfullscreen>
+                                allowfullscreen="">
                             </iframe>
 
                             <!--
@@ -1122,6 +1149,10 @@
 
     <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
+        function activateMap(element) {
+            element.classList.add('active');
+        }
+
         // --- CINEMATIC TRANSITION: OPEN ENVELOPE ---
         function openCelestialEnvelope() {
             const container = document.querySelector('.envelope-container');
