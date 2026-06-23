@@ -361,15 +361,31 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 10px; /* Adjust spacing */
-            background-color: rgba(0, 0, 0, 0.5); /* Background color for controls */
-            border-radius: 0 0 10px 0; /* Rounded corners (only bottom left) */
+            background: none;
+            padding: 0;
+            /* padding: 0px; /* Adjust spacing 
+            background-color: rgba(90, 54, 54, 0.3); /* Background color for controls 
+            border-radius: 0 0 0px 0; Rounded corners (only bottom left) */
             z-index: 9999; /* In case of overlapping with other elements */
         }
 
         .audio-container audio {
-            width: 100px; /* Adjust width of the audio element */
-            opacity: 0.8; /* Adjust transparency of controls */
+            width: 50px; /* Adjust width of the audio element */
+            opacity: 0.3; /* Adjust transparency of controls */
+        }
+
+        #music_btn {
+            background: transparent;      /* transparenter Hintergrund */
+            border: none;                 /* kein Rand */
+            color: white;                 /* Symbolfarbe */
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.3;                 /* Transparenz */
+            padding: 0px;
+        }
+
+        #music_btn:hover {
+            opacity: 0.8;                 /* etwas sichtbarer beim Hover */
         }
 
         /* --- DYNAMISCHE MASONRY COLLAGE (KAPITEL IV) --- */
@@ -871,11 +887,16 @@
         <div class="gold-border-decor decor-br"></div>
 
         <!-- AUDIO -->
+        <audio id="background_music" autoplay loop>
+            <source src="mp3/chinese-ancient-style-music-love.mp3" type="audio/mpeg">
+        </audio>
         <div class="audio-container">
-            <audio autoplay loop controls controlsList="nodownload">
+            <!-- <audio autoplay loop controls controlsList="nodownload">
                 <source src="mp3/chinese-ancient-style-music-love.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
-            </audio>
+            </audio> -->
+
+            <button id="music_btn">▶</button>
         </div>
 
         <!-- HERO INTRO -->
@@ -1149,6 +1170,19 @@
 
     <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
+        const audio = document.getElementById('background_music');
+        const btn = document.getElementById('music_btn');
+
+        btn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                btn.textContent = '⏸';
+            } else {
+                audio.pause();
+                btn.textContent = '▶';
+            }
+        });
+
         function activateMap(element) {
             element.classList.add('active');
         }
