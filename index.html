@@ -724,6 +724,29 @@
             background: rgba(20, 3, 3, 0.5);
         }
 
+        .modern-alert {
+            margin: 10px auto;
+            
+            
+            text-align: left;
+            position: relative;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            color: #1d1b1b; /* Dunkelgrau für optimale Lesbarkeit */
+            max-width: 450px;
+            
+            /* Der "Glass-Effekt": transparentes Weiß + Weichzeichner */
+            background-color: rgba(214, 176, 61, 0.5);  /*background-color: rgba(241, 211, 118, 0.45);*/
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
+            /* Subtiler Rahmen und Schatten */
+            border: 1px solid rgba(214, 175, 55, 0.35);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
         /* --- ANIMATIONS --- */
         @keyframes sealPulse {
             0% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 223, 122, 0.5); }
@@ -926,8 +949,10 @@
                         <p>Wir möchten unsere Liebe gemeinsam mit unseren liebsten Menschen feiern.</p>
                         <p>Wie du vielleicht bereits weißt, bringt eine deutsch-chinesische Hochzeit viele organisatorische und dokumentarische Hürden mit sich. Als zwei Studenten verfügen wir weder über ein großes Budget noch über die Möglichkeit, eine aufwendige Feier zu organisieren.</p>
                         <p>Deshalb haben wir uns für einen einfacheren Weg entschieden:</p>
-                        <p class="highlight-text">Eine kleine, persönliche Hochzeit in Dänemark - und die Gelegenheit, gemeinsam eine besondere Zeit an der Förde zu verbringen.</p>
-                        <p>Vielleicht nicht perfekt. Aber voller Herz. Und wir würden uns unglaublich freuen, wenn du Teil dieses besonderen Tages wirst.</p>
+                        <p class="highlight-text">Eine kleine, persönliche Hochzeit in Dänemark. Mit der Gelegenheit, gemeinsam eine besondere Zeit an der Förde zu verbringen.</p>
+                        <p>Auf ihrer ganz eigenen Weise perfekt und voller Herz. Und wir würden uns unglaublich freuen, wenn du Teil dieses besonderen Tages wirst.</p>
+                        <br><br><br>
+                        <p class="modern-alert"><strong>Hinweis</strong><br>Durch die hohe Nachfrage und wenig Angebot bei den Kommunen konnten wir unsere Hochzeit, sowie deine Einladung, erst jetzt eine konkrete Gestalt geben.<br>Wir hoffen um euer Verständnis, gerne hätten wir diese Einladung früher finalisiert und haben stets unser bestes dafür getan.</p>
                     </div>
                 </article>
             </div>
