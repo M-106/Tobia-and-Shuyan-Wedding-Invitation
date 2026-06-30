@@ -566,6 +566,20 @@
             text-shadow: 0 0 8px rgba(255, 223, 122, 0.25);
         }
 
+        .link-text {
+            color: var(--gold-bright);
+            font-weight: 300;
+            text-shadow: 0 0 8px rgba(255, 223, 122, 0.25);
+            text-decoration: none;
+        }
+
+        .highlight-link-text {
+            color: var(--gold-bright);
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 223, 122, 0.25);
+            text-decoration: none;
+        }
+
         /* REISEKARTE (KAPITEL 2) */
         .quest-map {
             margin-top: 35px;
@@ -738,7 +752,7 @@
             max-width: 450px;
             
             /* Der "Glass-Effekt": transparentes Weiß + Weichzeichner */
-            background-color: rgba(236, 196, 75, 0.5);  /*background-color: rgba(241, 211, 118, 0.45);*/
+            background-color: rgba(245, 191, 30, 0.5);  /*background-color: rgba(241, 211, 118, 0.45);*/
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             
@@ -929,7 +943,7 @@
                 <div class="game-title-en">Between Mountains and Seas</div>
             </div>
             <div class="couple-names">Tobia & Shuyan</div>
-            <div class="wedding-date">03. September 2026</div>
+            <div class="wedding-date">28 August 2026</div>
 
             <p class="poetic-subtitle">
                 Zwischen Bergen und Meeren, über Kontinente hinweg, haben sich unsere Herzen gefunden.
@@ -951,8 +965,10 @@
                         <p>Deshalb haben wir uns für einen einfacheren Weg entschieden:</p>
                         <p class="highlight-text">Eine kleine, persönliche Hochzeit in Dänemark. Mit der Gelegenheit, gemeinsam eine besondere Zeit an der Förde zu verbringen.</p>
                         <p>Auf ihrer ganz eigenen Weise perfekt und voller Herz. Und wir würden uns unglaublich freuen, wenn du Teil dieses besonderen Tages wirst.</p>
+                        <!--
                         <br><br><br>
-                        <p class="modern-alert"><strong>Hinweis</strong><br>Durch die hohe Nachfrage und wenig Angebot bei den Kommunen konnten wir unsere Hochzeit, sowie deine Einladung, erst jetzt eine konkrete Gestalt geben.<br>Wir hoffen um dein Verständnis, gerne hätten wir diese Einladung früher finalisiert und haben stets unser bestes dafür getan.<br>Termine werden nur 2 Monate im Vorraus veröffentlicht und sind in wenigen Sekunden vergeben, wir sind um 4 Uhr aufgestanden, haben die Website ständig aktualisiert und haben dann beide so schnell wie möglich alle Informationen ausgefüllt.</p>
+                        <p class="modern-alert"><strong>Hinweis</strong><br>Durch die hohe Nachfrage und wenig Angebot bei den Kommunen konnten wir unsere Hochzeit, sowie deine Einladung, erst jetzt eine konkrete Gestalt geben.<br>Wir hoffen um dein Verständnis, gerne hätten wir diese Einladung früher finalisiert und haben stets unser bestes dafür getan.<br>Termine werden nur 2 Monate im Vorraus veröffentlicht und sind in wenigen Sekunden vergeben, wir sind um 4 Uhr aufgestanden, haben die Website ständig aktualisiert und haben dann beide so schnell wie möglich alle Informationen ausgefüllt, um diesen Termin zu ermöglichen.</p>
+                        -->
                     </div>
                 </article>
             </div>
@@ -979,7 +995,7 @@
                             </div>
                             <div class="quest-step" onclick="window.location.href='https://www.flensburger-foerde.de/'">
                                 <div class="quest-icon"></div>
-                                <div class="quest-title">🌊 Erkundung</div>
+                                <div class="quest-title">🚶‍♂️‍➡️ Erkundung</div>
                                 <div class="quest-desc">Gemeinsam Flensburg erleben</div>
                             </div>
                             <div class="quest-step" onclick="window.location.href='https://weites.land/aabenraa-abenra-apenrade/'">
@@ -993,7 +1009,8 @@
                         <p><span class="highlight-text">Flensburg</span> ist für uns der perfekte Ort zum Ankommen, Entdecken und Genießen.<br>
                         Die Stadt bietet eine hervorragende Infrastruktur, eine große Auswahl an schönen Unterkünften und damit den idealen Ausgangspunkt für unsere gemeinsame Reise.<br>
                         Mit ihrer großen, lebendigen Innenstadt, einer der längsten Einkaufsstraßen Deutschlands und mehreren modernen Einkaufszentren bietet Flensburg zudem eine vielfältige Mischung aus Boutiquen, bekannten Marken, historischen Höfen und gemütlichen Cafés, die zum Bummeln und Entdecken einlädt.<br>
-                        Mit ihrem einzigartigen maritimen Flair, dem lebendigen Hafen, den historischen Kaufmannshöfen und der vielfältigen Gastronomie lädt Flensburg dazu ein, entspannt durch die Gassen zu schlendern, die besondere Atmosphäre der Förde zu erleben und immer wieder Neues zu entdecken.
+                        Mit ihrem einzigartigen maritimen Flair, dem lebendigen Hafen, den historischen Kaufmannshöfen und der vielfältigen Gastronomie lädt Flensburg dazu ein, entspannt durch die Gassen zu schlendern, die besondere Atmosphäre der Förde zu erleben und immer wieder Neues zu entdecken. 
+                        <br><a class="link-text" href="https://www.travelcircus.de/urlaubsziele/flensburg-sehenswuerdigkeiten/" target="_blank">Klick hier, um die Top 10  Sehenswürdigkeiten zu entdecken.</a>
                         
                         <div class="masonry-gallery">
                             <div class="masonry-item">
@@ -1036,27 +1053,28 @@
 
 
                             <br><br>
-                        <span class="highlight-text">Apenrade</span> wird die romantische Kulisse unserer Hochzeit. Das charmante dänische Städtchen bietet einen intimen und entspannten Rahmen für unsere Trauung. Die idyllische Lage an der Förde und das historische Schloss Brundlund schaffen eine traumhafte Atmosphäre und machen diesen besonderen Tag zu einem unvergesslichen Erlebnis.</p>
+                        <span class="highlight-text">Apenrade</span> wird die romantische Kulisse unserer Hochzeit. Das charmante dänische Städtchen bietet einen intimen und entspannten Rahmen für unsere Trauung. Die idyllische Lage an der Förde und das historische Schloss Brundlund schaffen eine traumhafte Atmosphäre und machen diesen besonderen Tag zu einem unvergesslichen Erlebnis. <a class="link-text" href="https://aabenraa.dk/media/k1rfjnex/tysk_marittimbyvandring-i-a-benra-_finalweb.pdf" target="_blank">Klick hier, für eine kleine Stadtführung.</a></p>
                     
-                        <!--
                         <div class="masonry-gallery">
                             <div class="masonry-item">
-                                <img src="img/apenrade-1.jpg">
+                                <img src="img/apenrade-1.jpeg">
                             </div>
                             <div class="masonry-item">
-                                <img src="img/apenrade-2.jpg">
+                                <img src="img/apenrade-2.jpeg">
                             </div>
                             <div class="masonry-item">
-                                <img src="img/apenrade-3.jpg">
+                                <img src="img/apenrade-3.jpeg">
                             </div>
                             <div class="masonry-item">
-                                <img src="img/apenrade-7.jpg">
+                                <img src="img/apenrade-4.jpeg">
                             </div>
                             <div class="masonry-item">
-                                <img src="img/apenrade-5.jpg">
+                                <img src="img/apenrade-5.jpeg">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="img/apenrade-6.jpeg">
                             </div>
                         </div>
-                        -->
 
                         <div class="location-map-card" onclick="activateMap(this)">
                             <div class="map-label">
@@ -1105,7 +1123,7 @@
                             </div>
                             <div class="info-cell">
                                 <div class="info-label">Datum</div>
-                                <div class="info-value">02-05.09.2026</div>
+                                <div class="info-value">26-29.08.2026</div>
                             </div>
                             <div class="info-cell">
                                 <div class="info-label">Unterkunft</div>
@@ -1188,7 +1206,7 @@
                 <p class="de">„Berge und Meere mögen uns trennen, doch unsere Herzen sind verbunden; ein gutes Schicksalsband, vom Himmel bestimmt.“</p>
             </blockquote>
 
-            <p class="final-call" style="margin-top:1cm;">An den Ufern der Förde, unter jenen Sternen, die unsere Herzen von Fernost bis ins Herz Europas geführt haben.</p>
+            <p class="final-call" style="margin-top:1cm;">An den Ufern der Förde, unter jenen Sternen, die unsere Herzen von Fernost bis ins Herzen Europas geführt haben.</p>
             <div class="gufeng-stamp">百年<br>好合</div>
         </section>
     </div>
